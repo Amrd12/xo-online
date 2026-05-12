@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  xo-online:
+    build: .
+    container_name: xo-online
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount a local 'data' directory to persist the SQLite database
+      - ./data:/app/data
+    environment:
+      # Override the database URL to use the mounted volume
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/app/data/xo_game.db
+    restart: unless-stopped
