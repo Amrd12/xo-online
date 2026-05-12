@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-XO | Premium Tic-Tac-Toe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- SockJS and STOMP -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <div class="app-container glass-panel">
+        
+        <!-- Header -->
+        <header>
+            <h1 class="logo">Multi<span class="highlight">XO</span></h1>
+            <div id="user-info" class="user-info hidden">
+                <span id="username-display"></span>
+                <span class="stats">Wins: <span id="win-count">0</span> | Losses: <span id="loss-count">0</span></span>
+                <button id="logout-btn" class="btn btn-small">Logout</button>
+            </div>
+        </header>
+
+        <main id="main-content">
+            <!-- Auth Section -->
+            <section id="auth-section" class="view hidden">
+                <h2>Welcome</h2>
+                <p>Play instantly as a guest, or login to save your stats!</p>
+                
+                <div class="auth-buttons">
+                    <button id="guest-play-btn" class="btn btn-primary btn-large">Play as Guest</button>
+                </div>
+                
+                <div class="divider"><span>OR</span></div>
+                
+                <form id="auth-form" class="auth-form">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <div class="form-actions">
+                        <button type="submit" id="login-btn" class="btn btn-secondary">Login</button>
+                        <button type="button" id="register-btn" class="btn btn-outline">Register & Claim Stats</button>
+                    </div>
+                    <p id="auth-error" class="error-msg hidden"></p>
+                </form>
+            </section>
+
+            <!-- Lobby Section -->
+            <section id="lobby-section" class="view hidden">
+                <h2>Lobby</h2>
+                <div class="lobby-actions">
+                    <button id="quick-match-btn" class="btn btn-primary btn-large">⚡ Quick Match</button>
+                    
+                    <div class="private-room-card glass-card">
+                        <h3>Private Room</h3>
+                        <button id="create-room-btn" class="btn btn-secondary">Create Room</button>
+                        <div class="join-room-wrapper">
+                            <input type="text" id="room-code-input" placeholder="Enter 4-digit code" maxlength="4">
+                            <button id="join-room-btn" class="btn btn-outline">Join</button>
+                        </div>
+                        <p id="lobby-error" class="error-msg hidden"></p>
+                    </div>
+                </div>
+                <div id="waiting-spinner" class="spinner-wrapper hidden">
+                    <div class="spinner"></div>
+                    <p>Waiting for opponent...</p>
+                    <h3 id="room-code-display" class="highlight"></h3>
+                </div>
+            </section>
+
+            <!-- Game Section -->
+            <section id="game-section" class="view hidden">
+                <div class="game-header">
+                    <div class="player p1">Player 1 (X) <span id="p1-indicator" class="turn-indicator"></span></div>
+                    <div class="vs">VS</div>
+                    <div class="player p2">Player 2 (O) <span id="p2-indicator" class="turn-indicator"></span></div>
+                </div>
+                
+                <h3 id="game-status" class="game-status">Waiting...</h3>
+
+                <div class="board" id="board">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+
+                <button id="leave-game-btn" class="btn btn-secondary hidden">Back to Lobby</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/game.js"></script>
+</body>
+</html>
