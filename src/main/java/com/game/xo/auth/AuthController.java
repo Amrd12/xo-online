@@ -3,7 +3,6 @@ package com.game.xo.auth;
 import com.game.xo.model.Player;
 import com.game.xo.repository.PlayerRepository;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class AuthController {
         this.playerRepository = playerRepository;
     }
 
-    @GetMapping("/me")
+    @GetMapping("/me")  
     public ResponseEntity<?> getCurrentUser(@CookieValue(name = "PLAYER_ID", required = false) String playerId) {
         if (playerId == null) {
             return ResponseEntity.ok(Map.of("authenticated", false));

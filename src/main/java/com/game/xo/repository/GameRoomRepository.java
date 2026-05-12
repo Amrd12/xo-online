@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
+
+//shadia
 public interface GameRoomRepository extends JpaRepository<GameRoom, Long> {
     Optional<GameRoom> findByRoomCodeAndStatus(String roomCode, String status);
     

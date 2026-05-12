@@ -5,7 +5,7 @@ services:
     build: .
     container_name: xo-online
     ports:
-      - "8080:8080"
+      - "8000:8000"
     volumes:
       # Mount a local 'data' directory to persist the SQLite database
       - ./data:/app/data
